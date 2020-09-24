@@ -1,0 +1,6 @@
+[build]
+target = "avr-unknown-gnu-atmega328"
+rustflags = ["-Clink-args=-lc"]
+
+[unstable]
+build-std = ["core"]

@@ -1,0 +1,27 @@
+[package]
+name = "rust-i32-as-f32-issue-repro"
+version = "0.1.0"
+edition = "2018"
+
+[profile.dev]
+panic = "abort"
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+[profile.release]
+panic = "abort"
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+[dependencies]
+ufmt = "0.1.0"
+
+[dependencies.encode_unicode]
+version = "0.3.6"
+default-features = false
+
+[dependencies.arduino-uno]
+git = "https://github.com/Rahix/avr-hal"
+features = ["arduino-nano"]

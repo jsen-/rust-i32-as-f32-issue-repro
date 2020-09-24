@@ -1,0 +1,37 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "cargo build",
+            "presentation": {
+                "clear": true
+            },
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "release build",
+            "type": "shell",
+            "command": "cargo build --release",
+            "presentation": {
+                "clear": true
+            },
+        },
+        {
+            "label": "upload",
+            "type": "shell",
+            "command": "avrdude -q -C/etc/avrdude.conf -patmega328p -carduino -P /dev/ttyUSB0 -b57600 -D \"-Uflash:w:target/avr-unknown-gnu-atmega328/release/rust-i32-as-f32-issue-repro.elf:e\" && screen /dev/ttyUSB0 57600",
+            "dependsOn": ["release build"],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            }
+        },
+    ]
+}
